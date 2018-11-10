@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import '.././styles/RoomList.css';
 
 
 class RoomList extends Component {
 
   constructor(props) {
     super(props);
-
 
     this.state = {
       rooms: [],
@@ -21,6 +21,7 @@ class RoomList extends Component {
       const room = snapshot.val();
       room.key = snapshot.key;
       this.setState({ rooms: this.state.rooms.concat( room ) })
+      if (this.state.rooms.length === 1) { this.props.setActiveRoom(room) }
     });
   }
 
@@ -32,7 +33,7 @@ class RoomList extends Component {
   }
 
   handleChange(e) {
-    this.setState({ newRoomName: e.target.value });;
+    this.setState({ newRoomName: e.target.value });
   }
 
   handleSubmit(e) {
@@ -48,12 +49,12 @@ class RoomList extends Component {
 	    <h3>Rooms</h3>
             {this.state.rooms.map( room =>
                 <li key={room.key} >
-                  {room.name}
+                  <button className="room-name" onClick={ () => this.props.setActiveRoom(room) }>{ room.name }</button>
                 </li>
             )}
             <form id="create-room" onSubmit={ (e) => this.handleSubmit(e) }>
-            <input type="text" value={ this.state.newRoomName } onChange={ (e) => this.handleChange(e) } />
-            <input type="submit" />
+            <input type="text" value={ this.state.newRoomName } onChange={ this.handleChange.bind(this) } name="newRoomName" placeholder="New Room Name" />
+            <input type="submit" value="+" />
             </form>
         </section>
 
