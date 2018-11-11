@@ -26,6 +26,16 @@ class Messages extends Component {
     this.showMessages( nextProps.activeRoom );
   }
 
+  createMessage(newMessageText) {
+    this.messagesRef.push({
+      username: (this.props.user ? this.props.user : 'Guest'),
+      content: newMessageText,
+      sentAt: Date.now(),
+      roomId: this.props.activeRoom.key,
+    });
+    this.setState({ newMessageText: '' });
+  }
+
   handleChange(e) {
     this.setState({newMessageText: e.target.value });
   }
@@ -50,6 +60,10 @@ class Messages extends Component {
             </li>
           )}
         </ul>
+        <form id="create-message" onSubmit={ (e) => { e.preventDefault(); this.createMessage(this.state.newMessageText) }}>
+        <input type="text" value={ this.state.newMessageText } onChange={this.handleChange.bind(this) } name="newMessageText" placeholder="Type message here..." />
+        <input type="submit" value="Send"/>
+        </form>
       </main>
     );
   }
