@@ -29,3 +29,32 @@ h2.room-name {
   display: inline-block;
   width: 90%;
 }
+
+#create-message {
+  bottom: 0;
+  height: 40px;
+  padding: 1rem;
+  position: fixed;
+  width: 75%;
+}
+#create-message input[type="text"] {
+  box-sizing: border-box;
+  font-size: 1.1rem;
+  margin: 0;
+  padding: 0.5;
+  width: 85%;
+}
+#create-message input[type="submit"] {
+  background: rgb(219, 235, 243);
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: black;
+  margin-left: 1%;
+  padding: 0.35rem;
+  width: 9%;
+}
+#create-message input[type="submit"]:hover {
+  background: rgb(196, 229, 233);
+  cursor: pointer;
+}

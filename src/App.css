@@ -9,6 +9,18 @@
   z-index: 3;
 }
 
+#sidebar-bottom {
+  background: rgb(254, 231, 231);
+  border-right: .25rem solid rgb(254, 254, 254);
+  box-shadow: 1px 0px 5px rgba(0,0,0,0.3);
+  height: 10%;
+  overflow: scroll;
+  position: fixed;
+  width: 25%;
+  z-index: 4;
+  bottom: 0;
+}
+
 #sidebar button:hover span {
   color: rgb(250, 231, 199);
 }
