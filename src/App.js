@@ -4,6 +4,7 @@ import { Route, Link } from 'react-router-dom';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';
+import User from './components/User';
 
 // Initialize Firebase
   var config = {
@@ -21,6 +22,7 @@ class App extends Component {
     super(props);
     this.state = {
       activeRoom: null,
+      user: null
     };
   }
 
@@ -28,12 +30,20 @@ class App extends Component {
     this.setState({activeRoom: room});
   }
 
+  setUser(user) {
+  this.setState({user: user});
+}
+
+
   render() {
     return (
       <div className="App">
       <aside id="sidebar">
       <h1 className="App-title">Bloc Chat</h1>
       <RoomList firebase={firebase} activeRoom={this.state.activeRoom} setActiveRoom={this.setActiveRoom.bind(this)} />
+      </aside>
+      <aside id="sidebar-bottom">
+      <User firebase={firebase} setUser={this.setUser.bind(this)} user={this.state.user} />
       </aside>
       <MessageList firebase={firebase} activeRoom={this.state.activeRoom} />
       </div>
